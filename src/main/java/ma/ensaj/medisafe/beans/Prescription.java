@@ -11,7 +11,7 @@ public class Prescription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prescription_id", nullable = false)
     private Integer id;
-    private Date date;
+    private String date;
     @Column(unique = true)
     private String reference;
 
@@ -22,7 +22,7 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(Date date, String reference, Medecin medecin) {
+    public Prescription(String date, String reference, Medecin medecin) {
         this.date = date;
         this.reference = reference;
         this.medecin = medecin;
@@ -36,11 +36,11 @@ public class Prescription {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

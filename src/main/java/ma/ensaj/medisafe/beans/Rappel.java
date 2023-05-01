@@ -13,8 +13,8 @@ public class Rappel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rappel_id", nullable = false)
     private Integer id;
-    private Date debut;
-    private Date fin;
+    private String debut;
+    private String fin;
     private String horaire;
 
     @ManyToOne
@@ -24,7 +24,7 @@ public class Rappel {
     public Rappel() {
     }
 
-    public Rappel(Date debut, Date fin, String horaire, User user) {
+    public Rappel(String debut, String fin, String horaire, User user) {
         this.debut = debut;
         this.fin = fin;
         this.horaire = horaire;
@@ -39,19 +39,19 @@ public class Rappel {
         this.id = id;
     }
 
-    public Date getDebut() {
+    public String getDebut() {
         return debut;
     }
 
-    public void setDebut(Date debut) {
+    public void setDebut(String debut) {
         this.debut = debut;
     }
 
-    public Date getFin() {
+    public String getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
+    public void setFin(String fin) {
         this.fin = fin;
     }
 

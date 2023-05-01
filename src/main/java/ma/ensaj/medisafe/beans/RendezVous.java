@@ -18,7 +18,7 @@ public class RendezVous {
     @JoinColumn(name = "medecin_id")
     private Medecin medecin;
     private String address;
-    private Date date;
+    private String date;
     private String horaire;
 
     @OneToOne(mappedBy = "rendezVous")
@@ -28,7 +28,7 @@ public class RendezVous {
     public RendezVous() {
     }
 
-    public RendezVous(Medecin medecin, String address, Date date, String horaire) {
+    public RendezVous(Medecin medecin, String address, String date, String horaire) {
         this.medecin = medecin;
         this.address = address;
         this.date = date;
@@ -59,11 +59,11 @@ public class RendezVous {
         this.address = address;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -12,8 +12,8 @@ public class Tracker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tracker_id", nullable = false)
     private Integer id;
-    private Date debut;
-    private Date fin;
+    private String debut;
+    private String fin;
     private String type_suivie;
     private String type_track;
 
@@ -27,7 +27,7 @@ public class Tracker {
     public Tracker() {
     }
 
-    public Tracker(Date debut, Date fin, String type_suivie, String type_track, User user) {
+    public Tracker(String debut, String fin, String type_suivie, String type_track, User user) {
         this.debut = debut;
         this.fin = fin;
         this.type_suivie = type_suivie;
@@ -43,19 +43,19 @@ public class Tracker {
         this.id = id;
     }
 
-    public Date getDebut() {
+    public String getDebut() {
         return debut;
     }
 
-    public void setDebut(Date debut) {
+    public void setDebut(String debut) {
         this.debut = debut;
     }
 
-    public Date getFin() {
+    public String getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
+    public void setFin(String fin) {
         this.fin = fin;
     }
 

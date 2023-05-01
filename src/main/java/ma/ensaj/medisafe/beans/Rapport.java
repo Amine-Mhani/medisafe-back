@@ -14,8 +14,8 @@ public class Rapport {
     @Column(name = "rapport_id", nullable = false)
     private Integer id;
     private String type;
-    private Date debut;
-    private Date fin;
+    private String debut;
+    private String fin;
 
 
 
@@ -26,7 +26,7 @@ public class Rapport {
     public Rapport() {
     }
 
-    public Rapport(String type, Date debut, Date fin, Tracker tracker) {
+    public Rapport(String type, String debut, String fin, Tracker tracker) {
         this.type = type;
         this.debut = debut;
         this.fin = fin;
@@ -49,19 +49,19 @@ public class Rapport {
         this.type = type;
     }
 
-    public Date getDebut() {
+    public String getDebut() {
         return debut;
     }
 
-    public void setDebut(Date debut) {
+    public void setDebut(String debut) {
         this.debut = debut;
     }
 
-    public Date getFin() {
+    public String getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
+    public void setFin(String fin) {
         this.fin = fin;
     }
 

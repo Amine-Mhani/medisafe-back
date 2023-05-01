@@ -15,7 +15,7 @@ public class RappelMed extends Rappel{
     public RappelMed() {
     }
 
-    public RappelMed(Date debut, Date fin, String horaire, User user, Medicament medicament) {
+    public RappelMed(String debut, String fin, String horaire, User user, Medicament medicament) {
         super(debut, fin, horaire, user);
         this.medicament = medicament;
     }

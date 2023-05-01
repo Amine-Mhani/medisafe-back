@@ -17,17 +17,19 @@ public class User {
     private String prenom;
     @Column(unique = true)
     private String cin;
-    private Date date_naissance;
+    private String date_naissance;
     private String address;
-    private int age;
-    private Double taille;
-    private Double poids;
+    private String age;
+    private String taille;
+    private String poids;
     @Column(unique = true)
     private String email;
     private String password;
     @Column(unique = true)
     private String tele;
     private String blood;
+
+    private String gender;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
@@ -43,7 +45,7 @@ public class User {
 
     public User() {}
 
-    public User(String nom, String prenom, String cin, Date date_naissance, String address, int age, Double taille, Double poids, String email, String password, String tele, String blood) {
+    public User(String nom, String prenom, String cin, String date_naissance, String address, String age, String taille, String poids, String email, String password, String tele, String blood) {
         this.nom = nom;
         this.prenom = prenom;
         this.cin = cin;
@@ -89,11 +91,11 @@ public class User {
         this.cin = cin;
     }
 
-    public Date getDate_naissance() {
+    public String getDate_naissance() {
         return date_naissance;
     }
 
-    public void setDate_naissance(Date date_naissance) {
+    public void setDate_naissance(String date_naissance) {
         this.date_naissance = date_naissance;
     }
 
@@ -105,27 +107,27 @@ public class User {
         this.address = address;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public Double getTaille() {
+    public String getTaille() {
         return taille;
     }
 
-    public void setTaille(Double taille) {
+    public void setTaille(String taille) {
         this.taille = taille;
     }
 
-    public Double getPoids() {
+    public String getPoids() {
         return poids;
     }
 
-    public void setPoids(Double poids) {
+    public void setPoids(String poids) {
         this.poids = poids;
     }
 
@@ -159,6 +161,14 @@ public class User {
 
     public void setBlood(String blood) {
         this.blood = blood;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public List<Medecin> getContacts() {

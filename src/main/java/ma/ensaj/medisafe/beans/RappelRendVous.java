@@ -17,7 +17,7 @@ public class RappelRendVous extends Rappel{
     public RappelRendVous() {
     }
 
-    public RappelRendVous(Date debut, Date fin, String horaire, User user, RendezVous rendezVous) {
+    public RappelRendVous(String debut, String fin, String horaire, User user, RendezVous rendezVous) {
         super(debut, fin, horaire, user);
         this.rendezVous = rendezVous;
     }
