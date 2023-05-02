@@ -12,9 +12,9 @@ public class Tracker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tracker_id", nullable = false)
     private Integer id;
+    private String nom;
     private String debut;
     private String fin;
-    private String type_suivie;
     private String type_track;
 
     @ManyToOne
@@ -27,10 +27,10 @@ public class Tracker {
     public Tracker() {
     }
 
-    public Tracker(String debut, String fin, String type_suivie, String type_track, User user) {
+    public Tracker(String nom, String debut, String fin, String type_track, User user) {
         this.debut = debut;
         this.fin = fin;
-        this.type_suivie = type_suivie;
+        this.nom = nom;
         this.type_track = type_track;
         this.user = user;
     }
@@ -59,12 +59,12 @@ public class Tracker {
         this.fin = fin;
     }
 
-    public String getType_suivie() {
-        return type_suivie;
+    public String getNom() {
+        return nom;
     }
 
-    public void setType_suivie(String type_suivie) {
-        this.type_suivie = type_suivie;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getType_track() {

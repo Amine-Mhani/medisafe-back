@@ -22,6 +22,7 @@ public class TrackerController {
 
     @PostMapping("/add")
     public Tracker createTracker(@RequestBody Tracker tracker) {
+        System.out.println("here");
         return trackerService.create(tracker);
     }
 
