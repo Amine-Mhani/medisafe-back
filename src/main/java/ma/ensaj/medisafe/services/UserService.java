@@ -28,8 +28,17 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public User create(User user){
-        return userRepository.save(user);
+    public HashMap<String,String> create(User user){
+        HashMap<String,String> response = new HashMap<>();
+        try{
+            userRepository.save(user);
+            response.put("message","done");
+            return response;
+        }catch (Exception e){
+            response.put("message","error");
+            return response;
+        }
+
     }
 
     public void update(User user){
@@ -45,6 +54,7 @@ public class UserService {
     }
 
     public Object auth(HashMap<String,Object> cord){
+        HashMap<String,String> response = new HashMap<>();
         String email =(String) cord.get("email");
         String psswd = (String) cord.get("password");
         String imei = (String) cord.get("imei");
@@ -55,9 +65,11 @@ public class UserService {
                 return user;
             }
             else
-                return "logout first";
+                response.put("message","logout first");
+                return response;
         }
-        return "not autorized";
+        response.put("message","not autorized");
+        return response;
     }
     public User getUserByImei(String imei){
         Auth auth = authRepository.findByImei(imei);

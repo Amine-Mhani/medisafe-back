@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User createUser(@RequestBody User user){
+    public  HashMap<String,String>createUser(@RequestBody User user){
         return userService.create(user);
     }
 
