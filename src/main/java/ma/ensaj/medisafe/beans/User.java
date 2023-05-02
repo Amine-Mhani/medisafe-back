@@ -19,7 +19,6 @@ public class User {
     private String cin;
     private String date_naissance;
     private String address;
-    private String age;
     private String taille;
     private String poids;
     @Column(unique = true)
@@ -109,13 +108,7 @@ public class User {
         this.address = address;
     }
 
-    public String getAge() {
-        return age;
-    }
 
-    public void setAge(String age) {
-        this.age = age;
-    }
 
     public String getTaille() {
         return taille;

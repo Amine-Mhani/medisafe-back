@@ -44,7 +44,7 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
-    public String auth(HashMap<String,Object> cord){
+    public Object auth(HashMap<String,Object> cord){
         String email =(String) cord.get("email");
         String psswd = (String) cord.get("password");
         String imei = (String) cord.get("imei");
@@ -52,7 +52,7 @@ public class UserService {
         if(user != null){
             if(authRepository.findByImei(imei) == null){
                 authRepository.save(new Auth(user, imei, new Date()));
-                return imei;
+                return user;
             }
             else
                 return "logout first";
