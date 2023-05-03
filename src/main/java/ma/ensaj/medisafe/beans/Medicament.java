@@ -9,30 +9,35 @@ import java.util.List;
 @Table(name = "medicament")
 public class Medicament {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "medicament_id", nullable = false)
     private Integer id;
-    @Column(unique = true)
-    private String nom;
-    @Column(unique = true)
-    private String reference;
+    private String title;
+    private String dateDebut;
+    private String dateFin;
+    private String type;
+    private String category;
+    private String forme;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToMany(mappedBy = "idMedicament")
     @JsonIgnore
-    private Category category;
-
-    @OneToMany(mappedBy = "medicament")
-    @JsonIgnore
-    private List<RappelMed> rappels;
+    private List<Dose> doses;
 
     public Medicament() {
     }
 
-    public Medicament(String nom, String reference, Category category) {
-        this.nom = nom;
-        this.reference = reference;
+
+    public Medicament(Integer id, String title, String dateDebut, String dateFin, String type, String category, String forme, List<Dose> doses) {
+        this.id = id;
+        this.title = title;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.type = type;
         this.category = category;
+        this.forme = forme;
+        this.doses = doses;
     }
 
     public Integer getId() {
@@ -43,35 +48,59 @@ public class Medicament {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getTitle() {
+        return title;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getReference() {
-        return reference;
+    public String getDateDebut() {
+        return dateDebut;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setDateDebut(String dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public Category getCategory() {
+    public String getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(String dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public List<RappelMed> getRappels() {
-        return rappels;
+    public String getForme() {
+        return forme;
     }
 
-    public void setRappels(List<RappelMed> rappels) {
-        this.rappels = rappels;
+    public void setForme(String forme) {
+        this.forme = forme;
+    }
+
+    public List<Dose> getDoses() {
+        return doses;
+    }
+
+    public void setDoses(List<Dose> doses) {
+        this.doses = doses;
     }
 }

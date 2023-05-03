@@ -1,6 +1,8 @@
 package ma.ensaj.medisafe.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,29 +11,29 @@ import java.util.List;
 @Table(name = "tracker")
 public class Tracker {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tracker_id", nullable = false)
     private Integer id;
     private String nom;
-    private String debut;
-    private String fin;
-    private String type_track;
+    private String dateDebut;
+    private String dateFin;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "tracker")
-    private List<Rapport> rapports;
+    @OneToMany(mappedBy = "idTracker")
+    @JsonIgnore
+    private List<Mesure> mesures;
 
     public Tracker() {
     }
 
-    public Tracker(String nom, String debut, String fin, String type_track, User user) {
-        this.debut = debut;
-        this.fin = fin;
+    public Tracker(String nom, String dateDebut, String dateFin, String type, User user) {
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
         this.nom = nom;
-        this.type_track = type_track;
+        this.type = type;
         this.user = user;
     }
 
@@ -43,22 +45,6 @@ public class Tracker {
         this.id = id;
     }
 
-    public String getDebut() {
-        return debut;
-    }
-
-    public void setDebut(String debut) {
-        this.debut = debut;
-    }
-
-    public String getFin() {
-        return fin;
-    }
-
-    public void setFin(String fin) {
-        this.fin = fin;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -67,12 +53,28 @@ public class Tracker {
         this.nom = nom;
     }
 
-    public String getType_track() {
-        return type_track;
+    public String getDateDebut() {
+        return dateDebut;
     }
 
-    public void setType_track(String type_track) {
-        this.type_track = type_track;
+    public void setDateDebut(String dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public String getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(String dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public User getUser() {
@@ -83,11 +85,11 @@ public class Tracker {
         this.user = user;
     }
 
-    public List<Rapport> getRapports() {
-        return rapports;
+    public List<Mesure> getMesures() {
+        return mesures;
     }
 
-    public void setRapports(List<Rapport> rapports) {
-        this.rapports = rapports;
+    public void setMesures(List<Mesure> mesures) {
+        this.mesures = mesures;
     }
 }

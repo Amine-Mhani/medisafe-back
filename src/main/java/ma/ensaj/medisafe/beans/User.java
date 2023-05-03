@@ -35,9 +35,21 @@ public class User {
     @JsonIgnore
     private List<Medecin> contacts;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Tracker> trackers;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Medicament> medicaments;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Dose> doses;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Mesure> mesures;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
