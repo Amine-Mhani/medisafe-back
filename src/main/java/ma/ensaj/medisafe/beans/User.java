@@ -27,7 +27,8 @@ public class User {
     @Column(unique = true)
     private String tele;
     private String blood;
-    private String image;
+    @Lob
+    private byte[] image;
     private String gender;
 
     @OneToMany(mappedBy = "user")
@@ -44,7 +45,7 @@ public class User {
 
     public User() {}
 
-    public User(String nom, String prenom, String cin, String date_naissance, String address, String age, String taille, String poids, String email, String password, String tele, String blood, String image, String gender) {
+    public User(String nom, String prenom, String cin, String date_naissance, String address, String taille, String poids, String email, String password, String tele, String blood, byte[] image, String gender) {
         this.nom = nom;
         this.prenom = prenom;
         this.cin = cin;
@@ -190,11 +191,11 @@ public class User {
         this.rappels = rappels;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }

@@ -38,7 +38,7 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void updateUser(@RequestBody User new_user){
         User user = userService.findById(new_user.getId());
 
