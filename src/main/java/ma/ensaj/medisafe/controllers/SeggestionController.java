@@ -19,10 +19,10 @@ import java.util.List;
 public class SeggestionController {
     @Autowired
     SeggestionService service;
-    @GetMapping("/{name}")
-    public ResponseEntity<List<Medicaments>> getUserByImei(@PathVariable String name){
+    @GetMapping("/nom={name}&page={page}")
+    public ResponseEntity<List<Medicaments>> getUserByImei(@PathVariable String name,@PathVariable int page){
         try {
-            return new ResponseEntity<>(service.getMedicaments(name), HttpStatus.OK);
+            return new ResponseEntity<>(service.getMedicaments(name,page), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
