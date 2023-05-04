@@ -4,7 +4,10 @@ import ma.ensaj.medisafe.beans.Auth;
 import ma.ensaj.medisafe.beans.User;
 import ma.ensaj.medisafe.repositories.AuthRepository;
 import ma.ensaj.medisafe.repositories.UserRepository;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -62,14 +65,14 @@ public class UserService {
         if(user != null){
             if(authRepository.findByImei(imei) == null){
                 authRepository.save(new Auth(user, imei, new Date()));
-                return user;
+                return new ResponseEntity<>(user, HttpStatus.OK);
             }
             else
                 response.put("message","logout first");
-                return response;
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
         response.put("message","not autorized");
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
     public User getUserByImei(String imei){
         Auth auth = authRepository.findByImei(imei);
