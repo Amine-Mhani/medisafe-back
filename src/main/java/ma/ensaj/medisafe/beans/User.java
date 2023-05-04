@@ -28,6 +28,7 @@ public class User {
     private String tele;
     private String blood;
     @Lob
+    @Column(name = "image", columnDefinition = "BLOB")
     private byte[] image;
     private String gender;
 

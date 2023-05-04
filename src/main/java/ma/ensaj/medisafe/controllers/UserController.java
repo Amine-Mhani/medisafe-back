@@ -1,5 +1,6 @@
 package ma.ensaj.medisafe.controllers;
 
+import ma.ensaj.medisafe.beans.Tracker;
 import ma.ensaj.medisafe.beans.User;
 import ma.ensaj.medisafe.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
@@ -40,7 +42,11 @@ public class UserController {
 
     @PutMapping("/update")
     public void updateUser(@RequestBody User new_user){
-        User user = userService.findById(new_user.getId());
+        User user = userService.findUserByEmail(new_user.getEmail());
+        new_user.setId(user.getId());
+
+        List<Tracker> remainingTrackers = user.getTrackers().stream().collect(Collectors.toList());
+        new_user.setTrackers(remainingTrackers);
 
         userService.update(new_user);
     }
