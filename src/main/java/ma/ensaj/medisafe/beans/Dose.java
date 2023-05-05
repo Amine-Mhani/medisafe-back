@@ -13,6 +13,14 @@ public class Dose {
     private String heure;
     private boolean suspend;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

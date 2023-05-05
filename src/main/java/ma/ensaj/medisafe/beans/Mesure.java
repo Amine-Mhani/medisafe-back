@@ -12,6 +12,15 @@ public class Mesure {
     private String value;
     private String date;
     private String heure;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @ManyToOne
     @JoinColumn(name = "tracker_id")
     private Tracker idTracker;
