@@ -9,11 +9,11 @@ import java.util.List;
 @Table(name = "medecin")
 public class Medecin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "medecin_id", nullable = false)
     private Integer id;
     private String nom;
-    private String prenom;
+    private String specialite;
+    private String adress;
+    private String bureau;
     @Column(unique = true)
     private String email;
     @Column(unique = true)
@@ -23,25 +23,24 @@ public class Medecin {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "medecin")
-    @JsonIgnore
-    private List<Prescription> prescriptions;
 
     @OneToMany(mappedBy = "medecin")
     @JsonIgnore
     private List<RendezVous> rendezVous;
 
-
-
     public Medecin() {
     }
 
-    public Medecin(String nom, String prenom, String email, String tele, User user) {
+    public Medecin(Integer id, String nom, String specialite, String adress, String bureau, String email, String tele, User user, List<RendezVous> rendezVous) {
+        this.id = id;
         this.nom = nom;
-        this.prenom = prenom;
+        this.specialite = specialite;
+        this.adress = adress;
+        this.bureau = bureau;
         this.email = email;
         this.tele = tele;
         this.user = user;
+        this.rendezVous = rendezVous;
     }
 
     public Integer getId() {
@@ -60,12 +59,28 @@ public class Medecin {
         this.nom = nom;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getSpecialite() {
+        return specialite;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getBureau() {
+        return bureau;
+    }
+
+    public void setBureau(String bureau) {
+        this.bureau = bureau;
     }
 
     public String getEmail() {
@@ -92,14 +107,6 @@ public class Medecin {
         this.user = user;
     }
 
-    public List<Prescription> getPrescriptions() {
-        return prescriptions;
-    }
-
-    public void setPrescriptions(List<Prescription> prescriptions) {
-        this.prescriptions = prescriptions;
-    }
-
     public List<RendezVous> getRendezVous() {
         return rendezVous;
     }
@@ -107,5 +114,4 @@ public class Medecin {
     public void setRendezVous(List<RendezVous> rendezVous) {
         this.rendezVous = rendezVous;
     }
-
 }

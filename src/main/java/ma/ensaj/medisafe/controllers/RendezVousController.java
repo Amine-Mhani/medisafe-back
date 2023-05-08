@@ -3,12 +3,14 @@ package ma.ensaj.medisafe.controllers;
 import ma.ensaj.medisafe.beans.RendezVous;
 import ma.ensaj.medisafe.services.RendezVousService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/RendezVous")
+@RequestMapping("/rendezVous")
 @CrossOrigin
 public class RendezVousController {
 
@@ -21,8 +23,15 @@ public class RendezVousController {
     }
 
     @PostMapping("/add")
-    public RendezVous createRendezVous(@RequestBody RendezVous rendezVous) {
-        return rendezVousService.create(rendezVous);
+    public ResponseEntity<String> createRendezVous(@RequestBody RendezVous rendezVous) {
+        try{
+            rendezVousService.create(rendezVous);
+            return ResponseEntity.status(HttpStatus.OK).body(("ok"));
+        }catch(Exception e){
+            System.out.println(e.toString());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error");
+        }
+
     }
 
     @DeleteMapping("/delete")

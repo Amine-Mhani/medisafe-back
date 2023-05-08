@@ -10,29 +10,32 @@ import java.util.List;
 @Table(name = "rendez_vous")
 public class RendezVous {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rendezvous_id", nullable = false)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "medecin_id")
     private Medecin medecin;
-    private String address;
-    private String date;
-    private String horaire;
+    private String lieu;
+    private String heure;
+    private String remarque;
+    private String nom;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @OneToOne(mappedBy = "rendezVous")
-    @JsonIgnore
-    private RappelRendVous rappel;
 
     public RendezVous() {
+
     }
 
-    public RendezVous(Medecin medecin, String address, String date, String horaire) {
+    public RendezVous(Integer id, Medecin medecin, String lieu, String heure, String remarque, String nom, User user) {
+        this.id = id;
         this.medecin = medecin;
-        this.address = address;
-        this.date = date;
-        this.horaire = horaire;
+        this.lieu = lieu;
+        this.heure = heure;
+        this.remarque = remarque;
+        this.nom = nom;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -51,35 +54,43 @@ public class RendezVous {
         this.medecin = medecin;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLieu() {
+        return lieu;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
-    public String getDate() {
-        return date;
+    public String getHeure() {
+        return heure;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 
-    public String getHoraire() {
-        return horaire;
+    public String getRemarque() {
+        return remarque;
     }
 
-    public void setHoraire(String horaire) {
-        this.horaire = horaire;
+    public void setRemarque(String remarque) {
+        this.remarque = remarque;
     }
 
-    public RappelRendVous getRappel() {
-        return rappel;
+    public String getNom() {
+        return nom;
     }
 
-    public void setRappel(RappelRendVous rappel) {
-        this.rappel = rappel;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
